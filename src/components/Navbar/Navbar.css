@@ -1,0 +1,213 @@
+/* src/components/Navbar.css */
+
+/* Variables pour une maintenance facile */
+:root {
+    --nav-bg-dark: #1a1a1a;
+    --nav-text-light: #f7f7f7;
+    --nav-accent-color: #00bcd4; /* Cyan/Turquoise */
+    --nav-scroll-shadow: 0 4px 12px rgba(0, 0, 0, 0.4); 
+}
+
+/*
+  =================================
+  STYLES DE BASE ET EFFET DE SCROLL
+  =================================
+*/
+.navbar {
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    
+    /* Styles par défaut (TRANSPARENT + IMAGE DE FOND) */
+    background-color: transparent;
+    transition: background-color 0.4s ease, box-shadow 0.4s ease, padding 0.4s ease;
+    padding: 15px 0;
+    box-shadow: none;
+    
+    /* --------------------------------- */
+    /* 🚨 IMAGE D'ARRIÈRE-PLAN POUR L'EFFET */
+    /* --------------------------------- */
+    /* L'image est affichée uniquement quand la barre n'est PAS scrollée et est transparente */
+    background-image: url('../../assets/autres/autre2.jpeg'); /* 🚨 À REMPLACER PAR VOTRE CHEMIN */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    /* Opacité pour que l'image de fond ne soit pas trop dominante */
+    opacity: 0.9; 
+}
+.navbar-icon{
+    color: var(--nav-accent-color); /* Icône du téléphone en accentuation */
+    margin-right: 5px;
+}
+
+/* Effet lorsqu'on scroll la page (class 'navbar-scrolled' ajoutée par React) */
+.navbar-scrolled {
+    /* Fond simple et opaque pour la lecture */
+    background-color: var(--nav-bg-dark); 
+    box-shadow: var(--nav-scroll-shadow);
+    padding: 10px 0;
+    opacity: 1; /* Retirer l'opacité de l'image de fond qui est masquée par la couleur unie */
+    background-image: none; /* Désactiver l'image pour un fond uni lors du scroll */
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Logo */
+.nav-logo h2 {
+    color: var(--nav-text-light);
+    font-size: 1.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/*
+  =================================
+  MENU DE BUREAU (Desktop)
+  =================================
+*/
+.nav-menu {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-menu li {
+    margin: 0 15px;
+}
+
+.nav-menu button,
+.nav-menu .nav-phone-link a { /* Cible le bouton ET le lien du téléphone */
+    background: none;
+    border: none;
+    color: var(--nav-text-light);
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 8px 1px;
+    cursor: pointer;
+    position: relative;
+    transition: color 0.3s ease;
+    text-decoration: none; /* S'assurer que le lien n'est pas souligné */
+    display: flex;
+    align-items: center;
+}
+
+/* Effet de survol et de lien actif (soulignement subtil) */
+.nav-menu button:hover,
+.nav-menu button:focus,
+.nav-menu .nav-phone-link a:hover {
+    color: var(--nav-accent-color); 
+    outline: none;
+}
+
+/* Soulignement seulement pour les boutons/liens de navigation, pas le téléphone */
+.nav-menu button::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--nav-accent-color);
+    transition: width 0.3s ease;
+}
+.nav-menu button:hover::after {
+    width: 100%;
+}
+
+/* Masquer l'icône de toggle sur le bureau */
+.nav-toggle {
+    display: none;
+    font-size: 1.5rem;
+    color: var(--nav-text-light);
+    cursor: pointer;
+}
+
+/*
+  =================================
+  RESPONSIVE (Mobile & Tablette)
+  =================================
+*/
+@media (max-width: 768px) {
+    
+    .nav-container {
+        padding: 0 20px;
+    }
+
+    /* Afficher l'icône de toggle */
+    .nav-toggle {
+        display: block;
+        z-index: 1001;
+    }
+
+    /* Masquer le menu par défaut sur mobile/tablette */
+    .nav-menu {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 100%;
+        height: 100vh;
+        /* Utiliser une couleur unie sur mobile pour un meilleur contraste */
+        background-color: var(--nav-bg-dark); 
+        padding-top: 80px;
+        transition: right 0.4s ease-in-out;
+        box-shadow: -4px 0 15px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Afficher le menu lorsqu'il est actif */
+    .nav-menu-active {
+        right: 0;
+    }
+
+    .nav-menu li {
+        text-align: center;
+        margin: 20px 0;
+        opacity: 0;
+        animation: fadeIn 0.5s ease forwards;
+    }
+    
+    .nav-menu button,
+    .nav-menu .nav-phone-link a {
+        font-size: 1.5rem;
+        color: var(--nav-text-light);
+        padding: 15px 0;
+        width: 100%;
+        justify-content: center; /* Centrer le contenu y compris le téléphone */
+    }
+    
+    /* Animation pour l'effet de survol sur mobile */
+    .nav-menu button:hover,
+    .nav-menu .nav-phone-link a:hover {
+        background-color: #333;
+        color: var(--nav-accent-color);
+    }
+    
+    /* Supprimer l'effet after sur les boutons du menu mobile */
+    .nav-menu button::after {
+        display: none;
+    }
+}
+
+/* Définition de l'animation pour l'apparition des liens */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

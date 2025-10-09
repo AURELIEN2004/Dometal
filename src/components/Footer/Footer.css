@@ -1,0 +1,192 @@
+/* :root {
+  --primary-color: #2c3e50;
+  --secondary-color: #e74c3c;
+  --accent-color: #f39c12;
+  --text-dark: #2c3e50;
+  --text-light: #7f8c8d;
+  --white: #ffffff;
+  --light-bg: #f8f9fa;
+  --shadow: 0 2px 10px rgba(0,0,0,0.1);
+  --transition: all 0.3s ease;
+}
+
+.footer-content{
+    display: flex;
+}
+.footer{
+      background-color: #121218;
+;
+} */
+
+/* src/components/Footer.css */
+
+/*
+  =================================
+  VARIABLES (Utilisation des mêmes que les autres sections)
+  =================================
+*/
+:root {
+    --dark-bg: #121218;         
+    --medium-bg: #1a1a24;       
+    --accent-color: #00bcd4;    
+    --white: #f7f7f7;           
+    --text-light: #aaa;         
+    --transition: all 0.3s ease;
+}
+
+/*
+  =================================
+  SECTION GLOBALE
+  =================================
+*/
+.footer {
+    /* Utilisation du fond sombre pour le pied de page */
+    background-color: var(--medium-bg); 
+    padding: 60px 0 20px; /* Moins de padding en bas pour la section copyright */
+    color: var(--white);
+    border-top: 3px solid var(--accent-color); /* Ligne d'accentuation en haut */
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/*
+  =================================
+  CONTENU DU FOOTER (COLONNES)
+  =================================
+*/
+.footer-content {
+    /* Mise en page en grille pour desktop (5 colonnes) */
+    display: grid;
+    /* 1 colonne pour Dometal (2x largeur) et 4 colonnes régulières */
+    grid-template-columns: 1.5fr repeat(4, 1fr); 
+    gap: 30px;
+    padding-bottom: 40px;
+    margin-bottom: 30px;
+    /* Séparateur pour la zone de copyright */
+    border-bottom: 1px solid #333; 
+}
+
+.footer-section {
+    /* Assure que chaque section gère son contenu */
+    line-height: 1.6;
+}
+
+.footer-section h3 {
+    /* Titre principal du site/logo */
+    font-size: 1.5rem;
+    color: var(--accent-color);
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.footer-section h4 {
+    /* Titres des sous-sections (Services, Liens, Contact) */
+    font-size: 1.1rem;
+    color: var(--white);
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.footer-section p {
+    color: var(--text-light);
+    font-size: 0.95rem;
+    margin-bottom: 10px;
+    /* Assure que l'icône de contact et le texte s'alignent */
+    display: flex;
+    align-items: flex-start;
+}
+
+/* Liste des liens (Services et Liens Utiles) */
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section ul li {
+    margin-bottom: 10px;
+}
+
+.footer-section ul li a {
+    color: var(--text-light);
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: color var(--transition);
+}
+
+.footer-section ul li a:hover {
+    color: var(--accent-color);
+    padding-left: 5px; /* Effet subtil au survol */
+}
+
+/* Icônes dans la section contact/horaires */
+.contact-icon {
+    font-size: 1.1rem;
+    color: var(--accent-color);
+    margin-right: 10px;
+    /* Pour aligner la carte avec le texte des horaires */
+    margin-top: 3px; 
+}
+
+/* Style des liens sociaux si vous les activez */
+.social-links {
+    margin-top: 20px;
+}
+
+.social-links a {
+    color: var(--white);
+    font-size: 1.5rem;
+    margin-right: 15px;
+    transition: color var(--transition);
+}
+
+.social-links a:hover {
+    color: var(--accent-color);
+}
+
+/*
+  =================================
+  SECTION COPYRIGHT (BOTTOM)
+  =================================
+*/
+.footer-bottom {
+    text-align: center;
+    padding-top: 10px;
+}
+
+.footer-bottom p {
+    font-size: 0.85rem;
+    color: #666;
+}
+
+/*
+  =================================
+  RESPONSIVE DESIGN
+  =================================
+*/
+@media (max-width: 992px) {
+    .footer-content {
+        /* Tablette : 2 colonnes par ligne */
+        grid-template-columns: repeat(2, 1fr); 
+    }
+}
+
+@media (max-width: 576px) {
+    .footer-content {
+        /* Mobile : 1 colonne par ligne */
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    .footer-section h3,
+    .footer-section h4 {
+        margin-top: 15px;
+        margin-bottom: 10px;
+        /* Ajout d'une ligne de séparation subtile sur mobile */
+        border-bottom: 1px solid #2a2a3a;
+        padding-bottom: 5px;
+    }
+}

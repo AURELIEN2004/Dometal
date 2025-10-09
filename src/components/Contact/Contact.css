@@ -1,0 +1,281 @@
+/* .whatsapp-icon{
+    color: rgb(9, 255, 0);
+}
+.phone-icon{
+    color: green;
+}
+.env-icon{
+    color: white;
+}
+.contact-info{
+    display: flex;
+    justify-content: space-between;
+}
+.contact{
+        background-color: #121218;
+padding-bottom: 40px;
+} */
+
+
+/* src/components/Contact.css */
+
+/*
+  =================================
+  VARIABLES GLOBALES (Pour la cohérence du thème sombre)
+  =================================
+*/
+:root {
+    --dark-bg: #121218;         /* Fond très sombre */
+    --medium-bg: #1a1a24;       /* Fond des cartes ou du formulaire */
+    --accent-color: #00bcd4;    /* Couleur d'accentuation (bleu/cyan) */
+    --white: #f7f7f7;           /* Texte clair principal */
+    --text-light: #aaa;         /* Texte secondaire/gris */
+    --transition: all 0.3s ease;
+}
+
+/*
+  =================================
+  SECTION GLOBALE
+  =================================
+*/
+.contact {
+    background-color: var(--dark-bg);
+    padding: 80px 0;
+    color: var(--white);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.section-header h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    position: relative;
+    display: inline-block;
+}
+
+.section-header h2::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background-color: var(--accent-color);
+    border-radius: 5px;
+}
+
+.section-header p {
+    color: var(--text-light);
+}
+
+/*
+  =================================
+  STRUCTURE PRINCIPALE (2 Colonnes)
+  =================================
+*/
+.contact-content {
+    /* Mise en page en grille pour les deux colonnes */
+    display: grid;
+    /* La colonne d'info prend 40% de l'espace, le formulaire 60% */
+    grid-template-columns: 0.4fr 0.6fr; 
+    gap: 60px;
+}
+
+/*
+  =================================
+  INFORMATIONS DE CONTACT (Colonne gauche)
+  =================================
+*/
+.contact-info {
+    /* Style du conteneur d'informations */
+    background: var(--medium-bg);
+    padding: 30px;
+    border-radius: 8px;
+    height: fit-content; /* S'adapte au contenu pour éviter un grand bloc vide */
+}
+
+.info-title {
+    color: var(--accent-color);
+    font-size: 1.5rem;
+    margin-bottom: 25px;
+    border-bottom: 1px solid #333;
+    padding-bottom: 15px;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 25px;
+}
+.contact-item h4 {
+    display: flex;
+    align-items: center;
+    margin-bottom: 25px;
+}
+/* .contact-item p {
+    display: flex;
+    align-items: flex-start;
+} */
+.contact-icon {
+    font-size: 1.5rem;
+    min-width: 40px; /* Assure un alignement parfait du texte */
+    margin-right: 15px;
+}
+
+/* Couleurs des icônes spécifiques */
+.phone-icon { color: #00bcd4; } /* Bleu accent */
+.whatsapp-icon { color: rgb(9, 255, 0); }
+.email-icon { color: var(--white); }
+.map-icon { color: #e91e63; } /* Rose */
+.clock-icon { color: #ff9800; } /* Orange */
+
+.contact-item h4 {
+    font-size: 1.1rem;
+    margin-bottom: 2px;
+    color: var(--white);
+}
+
+.contact-item p {
+    color: var(--text-light);
+    font-size: 0.95rem;
+}
+
+/*
+  =================================
+  FORMULAIRE DE CONTACT (Colonne droite)
+  =================================
+*/
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 30px;
+    background: var(--medium-bg); /* Fond similaire aux infos */
+    border-radius: 8px;
+}
+
+.form-title {
+    color: var(--accent-color);
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+.form-row {
+    display: flex;
+    gap: 15px;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #333;
+    border-radius: 5px;
+    background-color: #121218; /* Fond encore plus sombre pour les champs */
+    color: var(--white);
+    font-size: 1rem;
+    transition: border-color var(--transition);
+    box-sizing: border-box; /* Assure que le padding n'augmente pas la taille totale */
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    border-color: var(--accent-color);
+    outline: none;
+}
+
+.contact-form textarea {
+    resize: none; /* Empêche le redimensionnement vertical */
+    height: 100%; /* Important pour que la hauteur soit uniforme avec les autres champs */
+}
+
+.btn-submit {
+    background-color: var(--accent-color);
+    color: var(--dark-bg);
+    padding: 15px 30px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color var(--transition);
+    align-self: flex-start; /* Bouton aligné à gauche */
+}
+
+.btn-submit:hover {
+    background-color: #008c99; /* Couleur d'accentuation légèrement plus foncée */
+}
+
+/* Style pour les liens de contact */
+.contact-link {
+    text-decoration: none; /* Supprime le soulignement par défaut */
+    color: inherit; /* Hérite de la couleur du texte parent (white) */
+    display: block; /* S'assure que le lien prend toute la largeur du bloc */
+    transition: background-color 0.3s ease; /* Ajout d'une transition au survol */
+    border-radius: 5px; /* Bordure subtile */
+}
+
+/* Effet visuel au survol du lien */
+.contact-link:hover {
+    background-color: #2a2a3a; /* Un léger fond gris foncé au survol */
+    cursor: pointer;
+}
+
+
+/* Style pour le message de retour du formulaire (succès/erreur) */
+.contact-form .form-result-message {
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: 600;
+    text-align: center;
+    /* Couleur du texte basée sur le résultat (vous pouvez affiner avec JS si nécessaire) */
+    color: var(--accent-color); 
+    background-color: rgba(0, 188, 212, 0.1); /* Fond très léger */
+}
+
+/*
+  =================================
+  RESPONSIVE DESIGN (Tablettes et Mobiles)
+  =================================
+*/
+@media (max-width: 992px) {
+    .contact-content {
+        /* Les colonnes passent en une seule colonne sur tablette */
+        grid-template-columns: 1fr; 
+        gap: 40px;
+    }
+}
+
+@media (max-width: 576px) {
+    .contact {
+        padding: 50px 0;
+    }
+    
+    .form-row {
+        /* Sur petit mobile, les champs Nom/Email passent l'un sous l'autre */
+        flex-direction: column;
+        gap: 0;
+    }
+    
+    .contact-form input,
+    .contact-form textarea,
+    .contact-form .form-row > * {
+        margin-bottom: 15px; /* Ajoute l'espacement entre les champs empilés */
+    }
+
+    .btn-submit {
+        align-self: stretch; /* Le bouton prend toute la largeur */
+    }
+}

@@ -1,0 +1,305 @@
+/* Définition des variables - Basé sur vos captures d'écran */
+:root {
+    --dark-bg: #121218; 
+  --primary-color: #2c3e50;
+  --text-dark: #2c3e50;
+  --text-light: #7f8c8d;        /* Fond très sombre (section principale) */
+    --card-bg: #1a1a24;         /* Fond des cartes et conteneurs (légèrement plus clair) */
+    --light-text: #f0f0f0;      /* Couleur du texte clair */
+    --medium-text: #b0b0b0;     /* Couleur du texte secondaire ou des descriptions */
+    --heading-color: #b0b0b0;   /* Votre couleur accentuée (Cyan/Turquoise) */
+    --secondary-accent: #b2ebf2;/* Accentuation claire */
+    --price-color: #ff9800;     /* Couleur pour le prix (Orange) */
+    --shadow: 0 4px 15px rgba(0, 0, 0, 0.4); /* Ombre pour cartes sombres */
+}
+
+/* --------------------------------- */
+/* STYLES GÉNÉRAUX DE LA PAGE DEVIS (FOND SOMBRE) */
+/* --------------------------------- */
+
+.devis {
+    padding: 80px 0;
+    background-color: var(--dark-bg);
+    color: var(--light-text);
+}
+
+.devis .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.section-header h2 {
+    font-size: 2.5rem;
+    color: var(--light-text); /* Titre principal en blanc ou clair */
+    margin-bottom: 10px;
+}
+
+.section-header p {
+    color: var(--medium-text); /* Paragraphes en gris clair */
+    font-size: 1.1rem;
+}
+
+/* --------------------------------- */
+/* SECTION EXEMPLES DE DEVIS (Cartes uniformes) */
+/* --------------------------------- */
+
+.devis-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-bottom: 60px;
+}
+
+.devis-item {
+    background-color: var(--card-bg); /* Fond de carte #1a1a24 */
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    /* Optionnel: petite bordure subtile pour le style Dometal */
+    border: 1px solid rgba(0, 188, 212, 0.1); 
+}
+
+.devis-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
+}
+
+.devis-image-container {
+    height: 250px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.devis-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* ✅ affiche l’image entière sans la couper */
+    object-position: center;
+    transition: transform 0.4s ease;
+}
+.devis-image {
+    width: 100%;
+    height: 100%;
+    /* GARANTIT que l'image couvre le conteneur SANS DÉFORMATION */
+    object-fit: cover; 
+    transition: transform 0.4s ease;
+}
+
+.devis-item:hover .devis-image {
+    transform: scale(1.05);
+}
+
+.devis-content {
+    padding: 20px;
+}
+
+.devis-title {
+    font-size: 1.4rem;
+    color: var(--heading-color); /* Couleur accentuée pour le titre */
+    margin-bottom: 10px;
+}
+
+.devis-description {
+    color: var(--medium-text);
+    font-size: 0.95rem;
+    margin-bottom: 15px;
+}
+
+
+.devis-toggle-btn {
+    width: 100%;
+    background-color: var(--dark-bg); /* Fond du bouton plus sombre */
+    color: var(--heading-color);
+    border: 1px solid var(--heading-color);
+    padding: 10px 15px;
+    text-align: left;
+    font-weight: 700;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.devis-toggle-btn:hover {
+    background-color: var(--heading-color);
+    color: var(--dark-bg); /* Texte sombre au survol */
+}
+
+.toggle-icon {
+    margin-left: 10px;
+    font-size: 0.9rem;
+}
+
+/* Zone d'affichage des détails (l'accordéon) */
+.devis-details-area {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-out, padding 0.4s ease-out;
+    padding-top: 0;
+}
+
+.devis-details-area.open {
+    max-height: 500px; 
+    padding-top: 15px;
+    /* Fond très légèrement différent pour les détails ou le laisser transparent */
+    background-color: #252a3a; 
+    margin: 0 -20px -20px;
+    padding: 15px 20px 20px;
+}
+
+.devis-details-area ul {
+    list-style: disc;
+    padding-left: 20px;
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--medium-text);
+}
+
+.devis-details-area li {
+    padding: 5px 0;
+    border-bottom: 1px dashed #3a415a;
+}
+
+.devis-price {
+    font-weight: 700;
+    color: var(--price-color);
+    margin-top: 10px;
+    font-size: 1.1rem;
+}
+
+
+/* --------------------------------- */
+/* SECTION QUESTIONS FRÉQUENTES (FAQ) - THÈME SOMBRE UNIFORME */
+/* --------------------------------- */
+
+.faq-header {
+    margin-top: 50px;
+}
+
+.faq-container {
+    max-width: 800px;
+    margin: 0 auto 50px auto;
+    border: none; 
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+}
+
+/* Chaque question est un item */
+.faq-item:not(:last-child) {
+    border-bottom: 1px solid #3a415a; /* Ligne de séparation interne */
+}
+.faq-item{
+    padding-bottom: 15px;
+}
+
+.faq-question {
+    width: 100%;
+    /* Fond de question égal au fond de carte */
+    background-color: var(--card-bg); 
+    border: none;
+    padding: 18px 25px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 1.05rem;
+    color: var(--heading-color); /* Texte blanc */
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.2s;
+}
+
+.faq-question:hover {
+    background-color: #41414b; /* Survol légèrement plus clair */
+}
+
+.faq-question .toggle-icon {
+    color: var(--heading-color); /* Flèche accentuée */
+}
+
+/* Zone de la réponse */
+.faq-answer-area {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-in-out, padding 0.4s ease-in-out;
+    background-color: var(--dark-bg); /* Fond de réponse encore plus sombre que la carte */
+}
+
+.faq-answer-area.open {
+    max-height: 200px;
+    padding: 15px 25px;
+    border-top: 1px solid #3a415a;
+}
+
+.faq-answer-area p {
+    margin: 0;
+    color: var(--medium-text);
+    line-height: 1.5;
+}
+
+/* --------------------------------- */
+/* SECTION CTA DEVIS */
+/* --------------------------------- */
+.cta-devis {
+    text-align: center;
+    padding: 20px;
+    background-color: var(--card-bg); /* Fond de carte */
+    color: var(--heading-color);
+    border-radius: 10px;
+    margin: 0px auto;
+    box-shadow: var(--shadow);
+}
+
+.cta-devis p {
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+}
+
+.btn-cta {
+    display: inline-block;
+    background-color: var(--dark-bg);
+    color: var(--heading-color);
+    text-decoration: none;
+    padding: 12px 30px;
+    border-radius: 5px;
+    font-weight: 700;
+    transition: background-color 0.3s ease;
+}
+
+.btn-cta:hover {
+    background-color: var(--text-dark);
+    color: var(--text-light);
+}
+
+/* --------------------------------- */
+/* RESPONSIVITÉ */
+/* --------------------------------- */
+@media (max-width: 768px) {
+    .devis-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .devis {
+        padding: 50px 0;
+    }
+    
+    .faq-question {
+        font-size: 1rem;
+        padding: 15px 20px;
+    }
+    
+    .faq-answer-area.open {
+        padding: 10px 20px;
+    }
+}

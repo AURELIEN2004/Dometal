@@ -1,0 +1,216 @@
+/* src/components/Service.css */
+
+/*
+  =================================
+  DÉFINITION DES VARIABLES (Assurez-vous qu'elles sont cohérentes avec votre thème)
+  =================================
+*/
+:root {
+    --dark-bg: #121218;         /* Fond très sombre (section principale) */
+    --medium-bg: #1a1a24;       /* Fond des cartes (plus clair que le fond général) */
+    --accent-color: #00bcd4;    /* Couleur d'accentuation (Bleu/Cyan) */
+    --white: #f7f7f7;           /* Texte clair principal */
+    --text-light: #aaa;         /* Texte secondaire/gris */
+    --transition: all 0.3s ease; /* Transition standard */
+    --shadow: 0 4px 15px rgba(0, 0, 0, 0.4); /* Ombre prononcée */
+}
+
+/*
+  =================================
+  SECTION GLOBALE
+  =================================
+*/
+.service-section {
+    background-color: var(--dark-bg);
+    color: var(--white);
+    padding: 80px 0;
+    text-align: center;
+}
+
+.service-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Titre principal */
+.service-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: var(--white);
+    position: relative;
+    display: inline-block;
+}
+
+/* Ligne d'accentuation sous le titre */
+.service-title::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background-color: var(--accent-color);
+    border-radius: 5px;
+}
+
+/* Paragraphe d’introduction */
+.service-intro-text {
+    font-size: 1.1rem;
+    color: var(--text-light);
+    max-width: 700px;
+    margin: 0 auto 50px;
+    line-height: 1.6;
+}
+
+/*
+  =================================
+  MODE DÉFILEMENT HORIZONTAL (DESKTOP SEULEMENT)
+  =================================
+*/
+/* Cache le débordement horizontal */
+.service-list-wrapper {
+    overflow: hidden; 
+    margin: 40px 0;
+    white-space: nowrap; /* Force les éléments à rester sur une seule ligne */
+    position: relative;
+    padding: 20px 0;
+}
+
+/* Conteneur des cartes qui est animé */
+.service-list {
+    display: flex; /* Aligne les cartes horizontalement */
+    /* Animation de défilement : 20s, linéaire, infinie */
+    animation: scroll-services 20s linear infinite; 
+    width: max-content; /* Permet au conteneur de dépasser la largeur de l'écran */
+}
+
+/* Pause l'animation au survol */
+.service-list-wrapper:hover .service-list {
+    animation-play-state: paused;
+}
+
+/* Cartes de service */
+.service-card {
+    /* Largeur minimum/maximum des cartes sur desktop */
+    width: 400px;
+    min-width: 300px;
+    height: 300px;
+    padding: 30px;
+    background-color: var(--medium-bg);
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    transition: transform 0.3s ease, border-color 0.3s ease;
+    border: 1px solid #333; /* Bordure subtile */
+    margin: 0 15px;
+    /* Centrage du contenu dans la carte */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* Pour éviter les problèmes d'alignement du texte à cause du défilement */
+    white-space: normal; 
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent-color); /* Met en évidence la carte survolée */
+}
+
+.card-icon {
+    color: var(--accent-color);
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    transition: transform 0.3s ease;
+}
+
+.service-card:hover .card-icon {
+    transform: rotateY(180deg); /* Effet 3D au survol */
+}
+
+.card-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: var(--white);
+}
+
+.card-description {
+    color: var(--text-light);
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+/* Définition de l'animation de défilement */
+@keyframes scroll-services {
+    from {
+        transform: translateX(0%);
+    }
+    /* Déplace de 50% de la largeur totale (répétant la première série d'éléments) */
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+/*
+  =================================
+  RESPONSIVITÉ (Désactivation du défilement, passage en grille classique)
+  =================================
+*/
+
+/* Tablettes (Max 1024px) */
+@media (max-width: 1024px) {
+    /* Désactivation de la zone de défilement */
+    .service-list-wrapper {
+        overflow: visible;
+        white-space: normal;
+        padding: 0;
+        margin: 0;
+    }
+
+    /* Arrêt de l'animation et passage à la grille */
+    .service-list {
+        animation: none; /* Stoppe l'animation */
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); /* 2 colonnes */
+        gap: 25px;
+        justify-items: center;
+        width: 100%;
+    }
+
+    /* Ajustement de la taille des cartes pour la grille */
+    .service-card {
+        width: 100%; /* Prend toute la colonne */
+        min-width: unset;
+        height: auto;
+        padding: 25px;
+        margin: 0;
+    }
+
+    .service-title {
+        font-size: 2.2rem;
+    }
+}
+
+/* Mobiles (Max 768px) */
+@media (max-width: 768px) {
+    .service-section {
+        padding: 60px 0;
+    }
+
+    /* Passage à une seule colonne */
+    .service-list {
+        grid-template-columns: 1fr;
+    }
+
+    .service-card {
+        padding: 25px 20px;
+        margin: 10px 0;
+    }
+    
+    .service-title {
+        font-size: 2rem;
+    }
+}

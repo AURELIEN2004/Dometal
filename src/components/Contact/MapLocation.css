@@ -1,0 +1,102 @@
+/*
+  =================================
+  MODALE (OVERLAY) STYLES
+  =================================
+*/
+
+/* L'overlay (fond sombre et transparent qui prend tout l'écran) */
+.map-modal-overlay {
+    position: fixed; /* Reste fixe même en scrollant */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.85); /* Noir très sombre et transparent */
+    z-index: 1000; /* Assure que la modale est au-dessus de tout */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Le contenu de la modale (le conteneur de la carte) */
+.map-modal-content {
+    background-color: var(--dark-bg, #121218);
+    padding: 30px;
+    border-radius: 10px;
+    position: relative;
+    max-width: 90%;
+    width: 800px; /* Largeur maximale pour la carte */
+    max-height: 90vh; /* Limite la hauteur pour les petits écrans */
+    overflow-y: auto; /* Permet le scroll si le contenu dépasse la hauteur */
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
+    animation: fadeIn 0.3s ease-out;
+}
+
+/* Bouton de fermeture (la croix) */
+.modal-close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--accent-color, #00bcd4);
+    cursor: pointer;
+    transition: color 0.2s;
+    padding: 10px;
+    z-index: 1001; /* Doit être au-dessus du contenu */
+}
+
+.modal-close-button:hover {
+    color: var(--white);
+}
+
+.map-title {
+    font-size: 1.8rem;
+    color: var(--accent-color, #00bcd4);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Conteneur pour rendre la carte responsive (inchangé) */
+.map-responsive {
+    position: relative;
+    overflow: hidden;
+    padding-top: 56.25%; /* Ratio 16:9 */
+    background-color: var(--medium-bg, #1a1a24);
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.map-responsive iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 3px solid var(--accent-color, #00bcd4) !important;
+    border-radius: 8px;
+}
+
+.modal-footer-text {
+    color: var(--text-light, #aaa);
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+/* Animation d'apparition de la modale */
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+    .map-modal-content {
+        padding: 20px;
+        max-width: 95%;
+    }
+    .map-title {
+        font-size: 1.5rem;
+    }
+}
