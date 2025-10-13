@@ -16,6 +16,9 @@
   --shadow: 0 2px 10px rgba(0,0,0,0.1);
   --transition: all 0.3s ease;
 }
+.section-header h2 {
+  color: #ffffff !important;
+}
 
 .gallery {
   padding: 80px 0;
