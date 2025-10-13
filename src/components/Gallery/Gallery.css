@@ -149,6 +149,7 @@
   /* Pour un aspect uniforme, utilisez un ratio */
   /* Hauteur est contrôlée par le ratio de la grille, ou définissons-la pour l'uniformité */
   height: 300px; 
+  
   background-color: var(--medium-bg, #1a1a24);
   border: 1px solid #333;
 }
@@ -238,6 +239,7 @@
     animation: fadeIn 0.3s ease;
 }
 
+/* image apres qu on clique desus */
 .modal-content img {
     max-width: 100%;
     max-height: 70vh; /* Image prend 70% de la hauteur de la vue */
